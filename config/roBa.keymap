@@ -91,7 +91,7 @@
 
         FUNCTION {
             bindings = <
-&kp PERCENT  &kp PIPE   &kp PLUS       &kp DQT       &kp SQT                            &kp LT     &kp GT         &kp EXCL           &kp F4     &kp F5
+&kp PERCENT  &kp PIPE   &kp PLUS       &kp DQT       &kp SQT                            &kp COMMA  &kp LT         &kp GREATER_THAN   &kp EXCL   &kp F5
 &kp LBKT     &kp RBKT   &kp LC(POUND)  &kp ASTERISK  &kp LBRC   &trans        &kp RBRC  &kp COLON  &kp SEMICOLON  &kp F8             &kp F9     &kp F10
 &kp COMMA    &kp EQUAL  &kp DLLR       &kp PERIOD    &kp QMARK  &kp LPAR      &kp RPAR  &kp SLASH  &kp AT         &kp LA(BACKSLASH)  &kp COMMA  &kp F11
 &trans       &trans     &kp EXCL       &trans        &trans     &trans        &trans    &trans                                                  &kp F12
