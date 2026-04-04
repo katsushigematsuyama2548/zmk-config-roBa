@@ -10,7 +10,7 @@
 
 &trackball {
     automouse-layer = <4>;
-    scroll-layers = <5>;
+    scroll-layers = <5 10>;
 
     // arrows {
     //     layers = <3>;
@@ -196,10 +196,10 @@
 
         WIN_default_layer {
             bindings = <
-&kp Q             &kp W         &kp E   &kp R                 &kp T                                                                            &kp Y     &kp U  &lt 5 I   &kp O     &kp P
+&kp Q             &kp W         &kp E   &kp R                 &kp T                                                                            &kp Y     &kp U  &lt 10 I  &kp O     &kp P
 &mt LGUI A        &kp S         &kp D   &kp F                 &kp G                   &kp LS(LC(S))                    &kp LA(LS(LEFT))        &kp H     &kp J  &kp K     &kp L     &kp ENTER
 &mt LEFT_SHIFT Z  &kp X         &kp C   &kp V                 &kp B                   &kp LS(END)                      &kp LS(HOME)            &kp N     &kp M  &mkp MB1  &mkp MB2  &kp MINUS
-&kp LCTRL         &kp LEFT_ALT  &trans  &lt_to_layer_6 7 TAB  &lt_to_layer_6 8 SPACE  &lt_to_layer_6 9 LANGUAGE_2      &lt_to_layer_6 7 LANG1  &kp BSPC                             &lt_to_layer_6 5 ESCAPE
+&kp LCTRL         &kp LEFT_ALT  &trans  &lt_to_layer_6 7 TAB  &lt_to_layer_6 8 SPACE  &lt_to_layer_6 9 LANGUAGE_2      &lt_to_layer_6 7 LANG1  &kp BSPC                             &lt_to_layer_6 10 ESCAPE
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -232,6 +232,18 @@
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+        };
+
+        // Layer 10: Windows SCROLL (above Win base layer 6)
+        WIN_SCROLL {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp 0 0>;
         };
     };
 };
