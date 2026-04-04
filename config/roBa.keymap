@@ -42,6 +42,13 @@
         muhennkann {
             bindings = <&to_layer_0 INT_MUHENKAN>;
             key-positions = <11 10>;
+            layers = <0 1 2 3>;
+        };
+
+        muhennkann_win {
+            bindings = <&to_layer_6 INT_MUHENKAN>;
+            key-positions = <11 10>;
+            layers = <6 7 8 9>;
         };
 
         double_quotation {
@@ -62,6 +69,27 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
+
+        to_layer_6: to_layer_6 {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&to 6 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TO_LAYER_6";
+        };
+
+        bt_mac: bt_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0 &to 0>;
+            label = "BT_MAC";
+        };
+
+        bt_win: bt_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1 &to 6>;
+            label = "BT_WIN";
+        };
     };
 
     behaviors {
@@ -73,10 +101,23 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
+
+        lt_to_layer_6: lt_to_layer_6 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_TO_6";
+            bindings = <&mo>, <&to_layer_6>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
+
+        // ============================================================
+        // Mac Layers (0-3)
+        // ============================================================
 
         default_layer {
             bindings = <
@@ -109,14 +150,18 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans                 &trans                 &kp LG(UP)             &trans                 &bt BT_SEL 0
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                 &kp LG(LEFT)           &kp LG(DOWN)           &kp LG(RIGHT)          &bt BT_SEL 1
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(LA(LC(LG(O))))  &kp LS(LA(LC(LG(J))))  &kp LS(LC(LA(LG(K))))  &kp LS(LA(LC(LG(L))))  &bt BT_CLR_ALL
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                                      &trans
+&trans  &trans  &trans  &trans  &trans                      &trans                 &trans                 &kp LG(UP)             &trans                 &bt_mac
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                 &kp LG(LEFT)           &kp LG(DOWN)           &kp LG(RIGHT)          &bt_win
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(LA(LC(LG(O))))  &kp LS(LA(LC(LG(J))))  &kp LS(LC(LA(LG(K))))  &kp LS(LA(LC(LG(L))))  &bt BT_CLR
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                                      &bt BT_CLR_ALL
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
+
+        // ============================================================
+        // Shared Layers (4-5)
+        // ============================================================
 
         MOUSE {
             bindings = <
@@ -138,22 +183,48 @@
             sensor-bindings = <&inc_dec_kp 0 0>;
         };
 
-        layer_6 {
+        // ============================================================
+        // Windows Layers (6-9)
+        // ============================================================
+
+        WIN_default_layer {
             bindings = <
-&trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
+&kp Q             &kp W         &kp E   &kp R                 &kp T                                                                             &kp Y     &kp U  &lt 5 I   &kp O     &kp P
+&mt LGUI A        &kp S         &kp D   &kp F                 &kp G                   &kp LS(LC(S))                 &kp LA(LS(LEFT))            &kp H     &kp J  &kp K     &kp L     &kp ENTER
+&mt LEFT_SHIFT Z  &kp X         &kp C   &kp V                 &kp B                   &kp LS(END)                   &kp LS(HOME)                &kp N     &kp M  &mkp MB1  &mkp MB2  &kp MINUS
+&kp LCTRL         &kp LEFT_ALT  &trans  &lt_to_layer_6 7 TAB  &lt_to_layer_6 8 SPACE  &lt_to_layer_6 9 INT_MUHENKAN &lt_to_layer_6 7 INT_HENKAN &kp BSPC                             &lt_to_layer_6 5 ESCAPE
+            >;
+
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+        };
+
+        WIN_FUNCTION {
+            bindings = <
+&kp PERCENT  &kp PIPE   &kp PLUS       &kp DQT       &kp SQT                                            &kp COMMA          &kp LS(N9)          &kp LS(N0)           &kp LS(N8)  &kp LS(LC(S))
+&kp LBKT     &kp RBKT   &kp LC(POUND)  &kp ASTERISK  &kp LS(MINUS)  &trans               &kp SEMICOLON  &kp LS(SEMICOLON)  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)  &kp LS(N7)  &trans
+&kp COMMA    &kp EQUAL  &kp DLLR       &kp PERIOD    &kp LS(N5)     &kp EXCLAMATION      &kp SLASH      &kp LS(SLASH)      &kp LEFT_BRACE      &kp RIGHT_BRACE      &kp LS(N7)  &trans
+&trans       &trans     &kp EXCL       &trans        &trans         &trans               &trans         &trans                                                                  &trans
             >;
         };
 
-        layer_7 {
+        WIN_NUM {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp F5                                                     &kp LS(NUMBER_6)  &kp LS(N7)          &kp UP_ARROW        &kp LS(N9)           &kp RIGHT_PARENTHESIS
+&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp F12     &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE    &kp LS(NUMBER_1)  &kp LEFT_ARROW      &kp DOWN_ARROW      &kp RIGHT            &kp PERCENT
+&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD  &kp EQUAL                    &kp LS(NUMBER_2)  &kp LC(DELETE)    &kp LC(LS(DELETE))  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)  &kp BACKSLASH
+&trans                      &trans           &trans           &trans           &trans      &trans                       &trans            &trans                                                                         &kp PIPE
             >;
+        };
+
+        WIN_ARROW {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans                 &trans                 &kp LC(HOME)           &trans                 &bt_mac
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                 &kp HOME               &kp LC(END)            &kp END                &bt_win
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(LA(LC(LG(O))))  &kp LS(LA(LC(LG(J))))  &kp LS(LC(LA(LG(K))))  &kp LS(LA(LC(LG(L))))  &bt BT_CLR
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                                      &bt BT_CLR_ALL
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
         };
     };
 };
