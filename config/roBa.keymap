@@ -54,11 +54,25 @@
         double_quotation {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <20 21>;
+            layers = <0 1 2 3>;
+        };
+
+        double_quotation_win {
+            bindings = <&kp LS(N2)>;
+            key-positions = <20 21>;
+            layers = <6 7 8 9>;
         };
 
         eq {
             bindings = <&kp EQUAL>;
             key-positions = <24 25>;
+            layers = <0 1 2 3>;
+        };
+
+        eq_win {
+            bindings = <&kp LS(MINUS)>;
+            key-positions = <24 25>;
+            layers = <6 7 8 9>;
         };
     };
 
@@ -116,7 +130,7 @@
         compatible = "zmk,keymap";
 
         // ============================================================
-        // Mac Layers (0-3)
+        // Mac Layers (0-3) - unchanged
         // ============================================================
 
         default_layer {
@@ -184,8 +198,14 @@
         };
 
         // ============================================================
-        // Windows Layers (6-9)
+        // Windows Layers (6-9) - JIS 106/109 symbol mapping
         // ============================================================
+
+        // Mac→WinJIS symbol conversion applied:
+        // ( = LS(N8)  ) = LS(N9)  * = LS(SQT)  " = LS(N2)  ' = LS(N7)
+        // + = LS(SEMI)  : = SQT  = = LS(MINUS)  [ = RBKT  ] = NON_US_HASH
+        // { = LS(RBKT)  } = LS(NON_US_HASH)  & = LS(N6)  ^ = EQUAL
+        // @ = LBKT  _ = LS(INT1)  \ = INT1  | = LS(INT3)
 
         WIN_default_layer {
             bindings = <
@@ -200,19 +220,19 @@
 
         WIN_FUNCTION {
             bindings = <
-&kp PERCENT  &kp PIPE   &kp PLUS       &kp DQT       &kp SQT                                            &kp COMMA          &kp LS(N9)          &kp LS(N0)           &kp LS(N8)  &kp LS(LC(S))
-&kp LBKT     &kp RBKT   &kp LC(POUND)  &kp ASTERISK  &kp LS(MINUS)  &trans               &kp SEMICOLON  &kp LS(SEMICOLON)  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)  &kp LS(N7)  &trans
-&kp COMMA    &kp EQUAL  &kp DLLR       &kp PERIOD    &kp LS(N5)     &kp EXCLAMATION      &kp SLASH      &kp LS(SLASH)      &kp LEFT_BRACE      &kp RIGHT_BRACE      &kp LS(N7)  &trans
-&trans       &trans     &kp EXCL       &trans        &trans         &trans               &trans         &trans                                                                  &trans
+&kp LS(N5)       &kp LS(INT3)  &kp LS(SEMI)   &kp LS(N2)    &kp LS(N7)                                         &kp COMMA      &kp LS(N8)          &kp LS(N9)           &kp LS(SQT)          &kp LS(LC(S))
+&kp RBKT         &kp NON_US_HASH &kp LC(POUND) &kp LS(SQT)   &kp LS(INT1)   &trans               &kp SEMI      &kp SQT        &kp LS(RBKT)        &kp LS(NON_US_HASH)  &kp LS(N6)           &trans
+&kp COMMA        &kp LS(MINUS) &kp LS(N4)     &kp DOT       &kp LS(N5)     &kp LS(N1)           &kp SLASH     &kp LS(SLASH)  &kp LS(RBKT)        &kp LS(NON_US_HASH)  &kp LS(N6)           &trans
+&trans           &trans        &kp LS(N1)     &trans        &trans         &trans               &trans        &trans                                                                        &trans
             >;
         };
 
         WIN_NUM {
             bindings = <
-&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp F5                                                     &kp LS(NUMBER_6)  &kp LS(N7)          &kp UP_ARROW        &kp LS(N9)           &kp RIGHT_PARENTHESIS
-&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp F12     &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE    &kp LS(NUMBER_1)  &kp LEFT_ARROW      &kp DOWN_ARROW      &kp RIGHT            &kp PERCENT
-&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD  &kp EQUAL                    &kp LS(NUMBER_2)  &kp LC(DELETE)    &kp LC(LS(DELETE))  &kp LS(LEFT_BRACE)  &kp LS(RIGHT_BRACE)  &kp BACKSLASH
-&trans                      &trans           &trans           &trans           &trans      &trans                       &trans            &trans                                                                         &kp PIPE
+&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp F5                                                     &kp EQUAL         &kp LS(N6)          &kp UP_ARROW        &kp LS(N8)           &kp LS(N9)
+&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp F12     &kp LC(LA(KP_NUMBER_0))      &kp LS(INT1)      &kp LS(N1)        &kp LEFT_ARROW      &kp DOWN_ARROW      &kp RIGHT            &kp LS(N5)
+&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD  &kp LS(MINUS)                &kp LBKT          &kp LC(DELETE)    &kp LC(LS(DELETE))  &kp LS(RBKT)        &kp LS(NON_US_HASH)  &kp INT1
+&trans                      &trans           &trans           &trans           &trans      &trans                       &trans            &trans                                                                         &kp LS(INT3)
             >;
         };
 
