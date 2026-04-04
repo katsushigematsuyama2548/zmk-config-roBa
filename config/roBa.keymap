@@ -109,10 +109,10 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans        &kp LG(UP)    &trans         &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &kp LG(LEFT)  &kp LG(DOWN)  &kp LG(RIGHT)  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans        &trans        &trans         &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
+&trans  &trans  &trans  &trans  &trans                      &trans                 &trans                 &kp LG(UP)             &trans                 &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                 &kp LG(LEFT)           &kp LG(DOWN)           &kp LG(RIGHT)          &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(LA(LC(LG(O))))  &kp LS(LA(LC(LG(J))))  &kp LS(LC(LA(LG(K))))  &kp LS(LA(LC(LG(L))))  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                                      &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
