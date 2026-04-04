@@ -109,9 +109,9 @@
 
         ARROW {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans                 &trans                 &kp LG(UP)             &trans                 &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                 &kp LG(LEFT)           &kp LG(DOWN)           &kp LG(RIGHT)          &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(LA(LC(LG(O))))  &kp LS(LA(LC(LG(J))))  &kp LS(LC(LA(LG(K))))  &kp LS(LA(LC(LG(L))))  &trans
+&trans  &trans  &trans  &trans  &trans                      &trans                 &trans                 &kp LG(UP)             &trans                 &bt BT_SEL 0
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                 &kp LG(LEFT)           &kp LG(DOWN)           &kp LG(RIGHT)          &bt BT_SEL 1
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LS(LA(LC(LG(O))))  &kp LS(LA(LC(LG(J))))  &kp LS(LC(LA(LG(K))))  &kp LS(LA(LC(LG(L))))  &bt BT_CLR_ALL
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                                      &trans
             >;
 
